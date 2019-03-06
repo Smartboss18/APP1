@@ -3,7 +3,6 @@ package com.example.shubham.app1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,7 @@ public class TopicsFragments extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_topics_fragments, container, false);
+        View view = inflater.inflate(R.layout.fragment_topics, container, false);
 
 
        Button topic_animals = view.findViewById(R.id.animals);

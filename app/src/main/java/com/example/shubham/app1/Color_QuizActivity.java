@@ -55,30 +55,6 @@ public class Color_QuizActivity extends AppCompatActivity {
     String percentageFinal="0";
     int i=0;
 
-    public void getTimer(){
-
-        progressBar.setProgress(i);
-        new CountDownTimer(31000,1000) {
-
-            @Override
-            public void onTick(long l) {
-                timer.setText(String.valueOf(l/1000) + "s");
-                i++;
-                progressBar.setProgress((int)i*100/(31000/1000));
-            }
-
-            @Override
-            public void onFinish() {
-                theEnd();
-                mplayer.stop();
-                tick.stop();
-                i++;
-                progressBar.setProgress(100);
-            }
-        }.start();
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -243,5 +219,28 @@ public class Color_QuizActivity extends AppCompatActivity {
         editor.putString("colorPercentage", percentageFinal);
         editor.apply();
 
+    }
+
+    public void getTimer(){
+
+        progressBar.setProgress(i);
+        new CountDownTimer(31000,1000) {
+
+            @Override
+            public void onTick(long l) {
+                timer.setText(String.valueOf(l/1000) + "s");
+                i++;
+                progressBar.setProgress((int)i*100/(31000/1000));
+            }
+
+            @Override
+            public void onFinish() {
+                theEnd();
+                mplayer.stop();
+                tick.stop();
+                i++;
+                progressBar.setProgress(100);
+            }
+        }.start();
     }
 }
