@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "722067084547",
+    "firebase_url": "https://app1-4ed65.firebaseio.com",
+    "project_id": "app1-4ed65",
+    "storage_bucket": "app1-4ed65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722067084547:android:b7422abbbb2ce64e",
+        "android_client_info": {
+          "package_name": "com.example.shubham.app1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722067084547-7em010endv8b001rnoavdfa3sut7o1p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ72dJMd-ygf8HmZrBWhiu1dwK30i_iLA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

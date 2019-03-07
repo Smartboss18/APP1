@@ -31,7 +31,7 @@ dependencies {
     implementation fileTree(dir: 'libs', includes: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-
+    
     implementation 'com.google.firebase:firebase-database:9.6.1'
     implementation 'com.google.firebase:firebase-auth:9.6.1'
     implementation 'com.firebaseui:firebase-ui-auth:0.6.0'
