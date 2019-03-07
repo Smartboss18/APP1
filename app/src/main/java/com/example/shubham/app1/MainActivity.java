@@ -50,12 +50,10 @@ public class MainActivity extends AppCompatActivity {
 //        firstTimeCheck();
         setContentView(R.layout.activity_main);
 
-        Log.i("DDDD", "Oncreate");
-
         FirebaseApp.initializeApp(getApplicationContext());
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mUsername = ANONYMOUS;
+//        mUsername = ANONYMOUS;
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -150,8 +148,6 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 
-
-
     public void  onSignedInInitialise(String username){
         mUsername = username;
     }
@@ -160,22 +156,4 @@ public class MainActivity extends AppCompatActivity {
         mUsername = ANONYMOUS;
     }
 
-//    public void firstTimeCheck(){
-////        FirebaseUser user  = mFirebaseAuth.getCurrentUser();
-//        if (user!=null){
-//            Log.i("DDDD", "AAAAAAAA");
-//        }else{
-//            Log.i("DDDD", "6666666");
-//            startActivityForResult(
-//                    AuthUI.getInstance()
-//                            .createSignInIntentBuilder()
-//                            .setIsSmartLockEnabled(false)
-//                            .setProviders(
-//                                    AuthUI.EMAIL_PROVIDER,
-//                                    AuthUI.GOOGLE_PROVIDER,
-//                                    AuthUI.FACEBOOK_PROVIDER)
-//                            .build(),
-//                    RC_SIGN_IN);
-//        }
-//    }
 }
