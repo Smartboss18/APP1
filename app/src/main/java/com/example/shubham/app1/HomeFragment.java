@@ -14,11 +14,9 @@ import android.widget.Button;
 
 public class HomeFragment extends Fragment {
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +43,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
         final Button quizButton = view.findViewById(R.id.quiz);
         quizButton.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +80,4 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-
 }

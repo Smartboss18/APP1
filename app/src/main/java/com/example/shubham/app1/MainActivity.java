@@ -1,5 +1,7 @@
 package com.example.shubham.app1;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,12 +24,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
+import static java.util.Arrays.asList;
+
 
 public class MainActivity extends AppCompatActivity {
+
 
     public static final String ANONYMOUS = "anonymous";
 
     public static final int RC_SIGN_IN = 1;
+//    private int RC_SIGN_IN = 1822;
     private String mUsername;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -53,10 +61,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(getApplicationContext());
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-//        mUsername = ANONYMOUS;
+        mUsername = ANONYMOUS;
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mFirebaseAuth = FirebaseAuth.getInstance();
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -64,40 +71,62 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.fragment,new HomeFragment());
         ft.commit();
 
+
+
+        final ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>(asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build()));
+
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user  = firebaseAuth.getCurrentUser();
                 if (user!=null){
                     onSignedInInitialise(user.getDisplayName());
+                    String userID = user.getUid();
+                    String userEmail = user.getEmail();
+                    String phoneNumber = user.getPhoneNumber();
+
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("userID", userID);
+                    if (!userEmail.isEmpty()) {
+                        editor.putString("email", userEmail);
+                        Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
+                    }else if (!phoneNumber.isEmpty()){
+                        editor.putString("phoneNumber", phoneNumber);
+                        Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+                    }
+                    editor.apply();
+
+                    Log.i("UserIdd", userID);
+                    Log.i("TASKSSSSS", phoneNumber);
+
                 }else{
                     onSignedOutInitialise();
                     Log.i("DDDD", "hhhhhhhh");
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
-                                    .setIsSmartLockEnabled(false)
-                                    .setProviders(
-                                            AuthUI.EMAIL_PROVIDER,
-                                            AuthUI.GOOGLE_PROVIDER,
-                                            AuthUI.FACEBOOK_PROVIDER)
-                                    .build(),
-                            RC_SIGN_IN);
-                }
+                                    .setAvailableProviders(providers)
+                            .build(),
+                            RC_SIGN_IN
+                    );
+                } 
             }
         };
 
-        //mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "New ANONYMOUS User....", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Failed....", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        mFirebaseAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(MainActivity.this, "New ANONYMOUS User....", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Failed....", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -155,5 +184,4 @@ public class MainActivity extends AppCompatActivity {
     public void  onSignedOutInitialise(){
         mUsername = ANONYMOUS;
     }
-
 }

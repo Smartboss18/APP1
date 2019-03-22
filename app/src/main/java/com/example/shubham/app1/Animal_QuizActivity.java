@@ -59,7 +59,6 @@ public class Animal_QuizActivity extends AppCompatActivity {
     int i=0;
 
     public void getTimer(){
-
         progressBar.setProgress(i);
         new CountDownTimer(31000,1000) {
 
