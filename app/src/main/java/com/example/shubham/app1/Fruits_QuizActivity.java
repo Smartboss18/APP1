@@ -1,9 +1,7 @@
 package com.example.shubham.app1;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -41,9 +39,6 @@ public class Fruits_QuizActivity extends AppCompatActivity {
     MediaPlayer mplayer;
     MediaPlayer tick;
     MediaPlayer end;
-
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
 
     QuizObject quiz;
     ArrayList<QuizObject> questionsArraylist;
@@ -238,11 +233,6 @@ public class Fruits_QuizActivity extends AppCompatActivity {
             }
         });
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor = sharedPref.edit();
-
-        editor.putString("fruitPercentage", percentageFinal);
-        editor.apply();
-
+        SharedPreferenceUtils.updateProgress("Fruit", percentageFinal, getApplicationContext());
     }
 }

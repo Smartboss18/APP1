@@ -1,7 +1,5 @@
 package com.example.shubham.app1;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,10 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,6 +26,7 @@ import static java.util.Arrays.asList;
 
 public class MainActivity extends AppCompatActivity {
 
+    String currentUser;
 
     public static final String ANONYMOUS = "anonymous";
 
@@ -71,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.fragment,new HomeFragment());
         ft.commit();
 
-
-
         final ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>(asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.PhoneBuilder().build(),
@@ -88,17 +82,18 @@ public class MainActivity extends AppCompatActivity {
                     String userEmail = user.getEmail();
                     String phoneNumber = user.getPhoneNumber();
 
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("userID", userID);
-                    if (!userEmail.isEmpty()) {
-                        editor.putString("email", userEmail);
+                    SharedPreferenceUtils.updateProgress("userID", userID, getApplicationContext());
+
+                    if (phoneNumber == null) {
                         Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
-                    }else if (!phoneNumber.isEmpty()){
-                        editor.putString("phoneNumber", phoneNumber);
+                        SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
+                        SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
+
+                    }else if (userEmail==null){
                         Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+                        SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "phoneNumber");
+                        SharedPreferenceUtils.updateProgress("CurrentUser", phoneNumber, getApplicationContext());
                     }
-                    editor.apply();
 
                     Log.i("UserIdd", userID);
                     Log.i("TASKSSSSS", phoneNumber);
@@ -116,17 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 } 
             }
         };
-
-//        mFirebaseAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(MainActivity.this, "New ANONYMOUS User....", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Failed....", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
     }
 
     @Override

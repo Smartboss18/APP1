@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -213,12 +212,7 @@ public class Color_QuizActivity extends AppCompatActivity {
             }
         });
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor = sharedPref.edit();
-
-        editor.putString("colorPercentage", percentageFinal);
-        editor.apply();
-
+        SharedPreferenceUtils.updateProgress("Color", percentageFinal, getApplicationContext());
     }
 
     public void getTimer(){

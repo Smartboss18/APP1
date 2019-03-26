@@ -1,11 +1,9 @@
 package com.example.shubham.app1;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,9 +41,6 @@ public class Animal_QuizActivity extends AppCompatActivity {
     MediaPlayer mplayer;
     MediaPlayer tick;
     MediaPlayer end;
-
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
 
     QuizObject quiz;
     ArrayList<QuizObject> questionsArraylist;
@@ -239,10 +234,7 @@ public class Animal_QuizActivity extends AppCompatActivity {
             }
         });
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor = sharedPref.edit();
+        SharedPreferenceUtils.updateProgress("Animal", percentageFinal, getApplicationContext());
 
-        editor.putString("animalPercentage", percentageFinal);
-        editor.apply();
     }
 }

@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         progressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent progress = new Intent(getContext(), Progress.class);
+                Intent progress = new Intent(getContext(), ProgressActivity.class);
                 startActivity(progress);
             }
         });

@@ -25,7 +25,7 @@
         <activity android:name=".Colors_Learn" />
         <activity android:name=".Fruits_QuizActivity" />
         <activity android:name=".Color_QuizActivity" />
-        <activity android:name=".Progress" />
+        <activity android:name=".ProgressActivity" />
         <activity android:name=".SecurityPage">
         </activity>
     </application>

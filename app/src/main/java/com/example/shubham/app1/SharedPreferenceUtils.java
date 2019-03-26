@@ -1,0 +1,94 @@
+package com.example.shubham.app1;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class SharedPreferenceUtils {
+
+    static FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public static void updateProgress(String type, String value, final Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(type, value);
+        editor.apply();
+
+    }
+
+    public static String getDetail(String key, Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString(key, "");
+
+    }
+
+    public static void updateProgressInCloud(final Context context, String user){
+        final Map<String, Object> progressHashMap = new HashMap<>();
+
+        progressHashMap.put("Animal", SharedPreferenceUtils.getDetail("Animal", context));
+        progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
+        progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
+
+        db.collection("PROGRESS").document(user)
+                .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.i(" CompleteListener", "Success");
+                }else {
+                    Log.i(" CompleteListener", "Failed");
+                }
+            }
+        });
+    }
+
+    public static void checkUserExistance(final Context context, String user, String type){
+        db.collection("PROGRESS")
+                .whereEqualTo(type, user)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String animal = document.get("Animal").toString();
+                                    String color = document.get("Color").toString();
+                                    String fruit = document.get("Fruit").toString();
+
+                                    SharedPreferenceUtils.updateProgress("Animal", animal, context);
+                                    SharedPreferenceUtils.updateProgress("Color", color, context);
+                                    SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
+                                }
+                            } else {
+                                SharedPreferenceUtils.updateProgress("Animal", String.valueOf(0), context);
+                                SharedPreferenceUtils.updateProgress("Color", "0", context);
+                                SharedPreferenceUtils.updateProgress("Fruit", "0", context);
+                            }
+                        }
+                    });
+    }
+}
+
+
+//    public static void updateProgressInCloud(final Context context){
+//
+//        final String emailID = SharedPreferenceUtils.getDetail("email" , context);
+//        final String phoneNumber = SharedPreferenceUtils.getDetail("phoneNumber", context);
+//
+//
+//        }
+//    }
+
+
