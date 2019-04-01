@@ -18,6 +18,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ import static java.util.Arrays.asList;
 public class MainActivity extends AppCompatActivity {
 
     String currentUser;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userSignInType;
 
     public static final String ANONYMOUS = "anonymous";
 
@@ -77,26 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user  = firebaseAuth.getCurrentUser();
                 if (user!=null){
-                    onSignedInInitialise(user.getDisplayName());
-                    String userID = user.getUid();
-                    String userEmail = user.getEmail();
-                    String phoneNumber = user.getPhoneNumber();
-
-                    SharedPreferenceUtils.updateProgress("userID", userID, getApplicationContext());
-
-                    if (phoneNumber == null) {
-                        Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
-                        SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
-                        SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
-
-                    }else if (userEmail==null){
-                        Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
-                        SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "phoneNumber");
-                        SharedPreferenceUtils.updateProgress("CurrentUser", phoneNumber, getApplicationContext());
-                    }
-
-                    Log.i("UserIdd", userID);
-                    Log.i("TASKSSSSS", phoneNumber);
+                    getExistingUserDetails();
 
                 }else{
                     onSignedOutInitialise();
@@ -147,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RC_SIGN_IN){
             if(resultCode == RESULT_OK){
-                Toast.makeText(this, "SIGNED IN!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "SIGNED IN!", Toast.LENGTH_SHORT).show();
+                //getExistingUserDetails();
+
             }else if(resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "SIGN IN CANCELED", Toast.LENGTH_SHORT).show();
                 finish();
@@ -167,5 +153,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void  onSignedOutInitialise(){
         mUsername = ANONYMOUS;
+    }
+
+    public void getExistingUserDetails(){
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+        if (user!=null) {
+            Toast.makeText(this, "sn", Toast.LENGTH_SHORT).show();
+            onSignedInInitialise(user.getDisplayName());
+            String userID = user.getUid();
+            String userEmail = user.getEmail();
+            String phoneNumber = user.getPhoneNumber();
+            if (phoneNumber == null) {
+                Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
+                SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
+                SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
+                currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
+                userSignInType = "\"" + userEmail + "\"";
+
+            } else if (userEmail == null) {
+                Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+                SharedPreferenceUtils.checkUserExistance(getApplicationContext(), phoneNumber, "phoneNumber");
+                SharedPreferenceUtils.updateProgress("CurrentUser", phoneNumber, getApplicationContext());
+                currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
+                userSignInType = "\"" + phoneNumber + "\"";
+            }
+        }
     }
 }

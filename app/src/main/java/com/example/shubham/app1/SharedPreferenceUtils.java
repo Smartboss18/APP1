@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,7 +30,6 @@ public class SharedPreferenceUtils {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(type, value);
         editor.apply();
-
     }
 
     public static String getDetail(String key, Context context){
@@ -41,7 +45,7 @@ public class SharedPreferenceUtils {
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
 
-        db.collection("PROGRESS").document(user)
+        db.collection("PROGRESS").document("\"" + user + "\"")
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -55,29 +59,82 @@ public class SharedPreferenceUtils {
     }
 
     public static void checkUserExistance(final Context context, String user, String type){
-        db.collection("PROGRESS")
-                .whereEqualTo(type, user)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    String animal = document.get("Animal").toString();
-                                    String color = document.get("Color").toString();
-                                    String fruit = document.get("Fruit").toString();
+        Log.i("checkUserExistance", user +" " + type);
 
-                                    SharedPreferenceUtils.updateProgress("Animal", animal, context);
-                                    SharedPreferenceUtils.updateProgress("Color", color, context);
-                                    SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
+        final String currentUser = "\"" + SharedPreferenceUtils.getDetail("CurrentUser", context) + "\"";
+
+            db.collection("PROGRESS")
+                    .document("CurrentUser")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()){
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                if(documentSnapshot.exists()){
+                                    String animal = documentSnapshot.get("Animal").toString();
+                                    Toast.makeText(context, animal, Toast.LENGTH_SHORT).show();
+                                }else{
+                                    db.collection("PROGRESS").document(currentUser)
+                                            .set("Animals: 0")
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(context, "New User", Toast.LENGTH_SHORT).show();
+                                                    SharedPreferenceUtils.updateProgress("Animal", "0", context);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(context, "Couldn't add user.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                 }
-                            } else {
-                                SharedPreferenceUtils.updateProgress("Animal", String.valueOf(0), context);
-                                SharedPreferenceUtils.updateProgress("Color", "0", context);
-                                SharedPreferenceUtils.updateProgress("Fruit", "0", context);
+                            }else {
+                                Toast.makeText(context, "Failed To Get Data!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
+//        db.collection("PROGRESS")
+//                .whereEqualTo(type, user)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        Log.i(" checkUserExistance", "USER FOUND SS");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.i(" checkUserExistance", "USER not FOUND ff");
+//                    }
+//                })
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                            if (task.isSuccessful()) {
+//                                for (QueryDocumentSnapshot document : task.getResult()) {
+//                                    String animal = document.get("Animal").toString();
+//                                    String color = document.get("Color").toString();
+//                                    String fruit = document.get("Fruit").toString();
+//
+//                                    SharedPreferenceUtils.updateProgress("Animal", animal, context);
+//                                    SharedPreferenceUtils.updateProgress("Color", color, context);
+//                                    SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
+//
+//                                    Log.i(" checkUserExistance", "USER FOUND");
+//                                }
+//                            } else {
+//                                SharedPreferenceUtils.updateProgress("Animal", String.valueOf(0), context);
+//                                SharedPreferenceUtils.updateProgress("Color", String.valueOf(0), context);
+//                                SharedPreferenceUtils.updateProgress("Fruit", String.valueOf(0), context);
+//                                Log.i(" checkUserExistance", "USER not FOUND");
+//                            }
+//                        }
+//                    });
     }
 }
 

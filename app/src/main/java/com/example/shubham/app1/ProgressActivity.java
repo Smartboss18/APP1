@@ -21,8 +21,6 @@ public class ProgressActivity extends AppCompatActivity {
     String colorPoint;
     String currentUser;
 
-    int check = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
