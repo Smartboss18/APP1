@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ANONYMOUS = "anonymous";
 
     public static final int RC_SIGN_IN = 1;
-//    private int RC_SIGN_IN = 1822;
+
     private String mUsername;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -169,14 +169,14 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
                 SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
                 currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
-                userSignInType = "\"" + userEmail + "\"";
+                userSignInType =  userEmail;
 
             } else if (userEmail == null) {
                 Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
                 SharedPreferenceUtils.checkUserExistance(getApplicationContext(), phoneNumber, "phoneNumber");
                 SharedPreferenceUtils.updateProgress("CurrentUser", phoneNumber, getApplicationContext());
                 currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
-                userSignInType = "\"" + phoneNumber + "\"";
+                userSignInType = phoneNumber;
             }
         }
     }

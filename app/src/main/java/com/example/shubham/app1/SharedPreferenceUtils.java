@@ -45,7 +45,7 @@ public class SharedPreferenceUtils {
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
 
-        db.collection("PROGRESS").document("\"" + user + "\"")
+        db.collection("PROGRESS").document( user )
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -61,10 +61,10 @@ public class SharedPreferenceUtils {
     public static void checkUserExistance(final Context context, String user, String type){
         Log.i("checkUserExistance", user +" " + type);
 
-        final String currentUser = "\"" + SharedPreferenceUtils.getDetail("CurrentUser", context) + "\"";
+        final String currentUser =  SharedPreferenceUtils.getDetail("CurrentUser", context);
 
             db.collection("PROGRESS")
-                    .document("CurrentUser")
+                    .document(currentUser)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -73,10 +73,19 @@ public class SharedPreferenceUtils {
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 if(documentSnapshot.exists()){
                                     String animal = documentSnapshot.get("Animal").toString();
-                                    Toast.makeText(context, animal, Toast.LENGTH_SHORT).show();
+                                    Log.i("ANimal", animal);
                                 }else{
+                                    Map<String, Object> progress = new HashMap<>();
+                                    progress.put("Animal: ", "0");
+                                    progress.put("Color: ", "0");
+                                    progress.put("Fruit", "0");
+
+                                    SharedPreferenceUtils.updateProgress("Animal", "0", context);
+                                    SharedPreferenceUtils.updateProgress("Color", "0", context);
+                                    SharedPreferenceUtils.updateProgress("Fruit", "0", context);
+
                                     db.collection("PROGRESS").document(currentUser)
-                                            .set("Animals: 0")
+                                            .set(progress)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
