@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void  onSignedOutInitialise(){
         mUsername = ANONYMOUS;
-//        SharedPreferenceUtils.deleteSharedPrefence(getApplicationContext());
+        SharedPreferenceUtils.deleteSharedPrefence(getApplicationContext());
     }
 
     public void getExistingUserDetails(){

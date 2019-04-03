@@ -59,10 +59,9 @@ public class SharedPreferenceUtils {
         });
     }
 
-//    public static void deleteSharedPrefence(Context context){
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//        sharedPreferences.edit().clear().commit();
-//    }
+    public static void deleteSharedPrefence(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    }
 
     public static void checkUserExistance(final Context context, final String user, String type){
         Log.i("checkUserExistance", user +" " + type);
@@ -79,7 +78,9 @@ public class SharedPreferenceUtils {
                                 if(documentSnapshot.exists()){
                                     Log.i("Userrr", "Old");
                                     documentSnapshot.getData();
-                                   String animal =  documentSnapshot.getString("Animal");
+
+                                    Log.i("DATAAAA",  documentSnapshot.getString("Animal"));
+                                    String animal =  documentSnapshot.getString("Animal");
                                     String color = documentSnapshot.getString("Color");
                                     String fruit = documentSnapshot.getString("Fruit");
 
@@ -90,11 +91,13 @@ public class SharedPreferenceUtils {
                                 }else{
 
                                     SharedPreferenceUtils.getDetail("Animal", context);
-                                    Log.i("Userrr", "New");
+                                    Log.i("DATAAA", "New");
                                     Map<String, Object> progress = new HashMap<>();
                                     progress.put("Animal: ", "0");
                                     progress.put("Color: ", "0");
                                     progress.put("Fruit", "0");
+
+//                                    SharedPreferenceUtils.deleteSharedPrefence(context);
 
                                     SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);
