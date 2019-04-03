@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,7 @@ public class Animal_QuizActivity extends AppCompatActivity {
     TextView finalPercentage;
     Button start;
     RelativeLayout mainQuestion;
-    RelativeLayout theEnd;
+    ConstraintLayout theEnd;
     ImageView questionImage;
     Button button1;
     Button button2;
@@ -94,7 +95,7 @@ public class Animal_QuizActivity extends AppCompatActivity {
         outcome = findViewById(id.outcome);
         rand = new Random();
         finalPoint = findViewById(id.finalPoints);
-        wrongPoints = findViewById(id.wrongPoints);
+        wrongPoints = findViewById(id.wrongPoint);
         finalPercentage = findViewById(id.percentage);
         theEnd = findViewById(id.theEnd);
         progressBar = findViewById(id.progressBar);
@@ -203,9 +204,9 @@ public class Animal_QuizActivity extends AppCompatActivity {
         start.setVisibility(findViewById(id.go).INVISIBLE);
         theEnd.setVisibility(findViewById(id.theEnd).VISIBLE);
 
-        finalPoint.setVisibility(findViewById(id.finalPoints).VISIBLE);
-        wrongPoints.setVisibility(findViewById(id.wrongPoints).VISIBLE);
-        finalPercentage.setVisibility(findViewById(id.finalPoints).VISIBLE);
+        finalPoint.setVisibility(findViewById(id.wrongPoint).VISIBLE);
+        wrongPoints.setVisibility(findViewById(id.wrongPoint).VISIBLE);
+        finalPercentage.setVisibility(findViewById(id.wrongPoint).VISIBLE);
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));

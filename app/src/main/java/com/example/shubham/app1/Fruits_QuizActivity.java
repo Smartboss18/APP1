@@ -2,6 +2,7 @@ package com.example.shubham.app1;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class Fruits_QuizActivity extends AppCompatActivity {
     TextView finalPercentage;
     Button start;
     RelativeLayout mainQuestion;
-    RelativeLayout theEnd;
+    ConstraintLayout theEnd;
     ImageView questionImage;
     Button button1;
     Button button2;
@@ -92,8 +93,8 @@ public class Fruits_QuizActivity extends AppCompatActivity {
         mainQuestion = findViewById(R.id.mainQuestionPage);
         outcome = findViewById(R.id.outcome);
         rand = new Random();
-        finalPoint = findViewById(R.id.finalPoints);
-        wrongPoints = findViewById(R.id.wrongPoints);
+        finalPoint = findViewById(R.id.wrongPoint);
+        wrongPoints = findViewById(R.id.wrongPoint);
         finalPercentage = findViewById(R.id.percentage);
         theEnd = findViewById(R.id.theEnd);
         progressBar = findViewById(R.id.progressBar);
@@ -202,9 +203,9 @@ public class Fruits_QuizActivity extends AppCompatActivity {
         start.setVisibility(findViewById(R.id.go).INVISIBLE);
         theEnd.setVisibility(findViewById(R.id.theEnd).VISIBLE);
 
-        finalPoint.setVisibility(findViewById(R.id.finalPoints).VISIBLE);
-        wrongPoints.setVisibility(findViewById(R.id.wrongPoints).VISIBLE);
-        finalPercentage.setVisibility(findViewById(R.id.finalPoints).VISIBLE);
+        finalPoint.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
+        wrongPoints.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
+        finalPercentage.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));
