@@ -1,6 +1,7 @@
 package com.example.shubham.app1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -93,7 +94,7 @@ public class Fruits_QuizActivity extends AppCompatActivity {
         mainQuestion = findViewById(R.id.mainQuestionPage);
         outcome = findViewById(R.id.outcome);
         rand = new Random();
-        finalPoint = findViewById(R.id.wrongPoint);
+        finalPoint = findViewById(R.id.finalPoints);
         wrongPoints = findViewById(R.id.wrongPoint);
         finalPercentage = findViewById(R.id.percentage);
         theEnd = findViewById(R.id.theEnd);
@@ -206,6 +207,7 @@ public class Fruits_QuizActivity extends AppCompatActivity {
         finalPoint.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         wrongPoints.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         finalPercentage.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
+        finalPercentage.setTextColor(Color.parseColor("#FFD81B60"));
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));

@@ -2,6 +2,7 @@ package com.example.shubham.app1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -72,7 +73,7 @@ public class Color_QuizActivity extends AppCompatActivity {
         mainQuestion = findViewById(R.id.mainQuestionPage);
         outcome = findViewById(R.id.outcome);
         rand = new Random();
-        finalPoint = findViewById(R.id.wrongPoint);
+        finalPoint = findViewById(R.id.finalPoints);
         wrongPoints = findViewById(R.id.wrongPoint);
         finalPercentage = findViewById(R.id.percentage);
         theEnd = findViewById(R.id.theEnd);
@@ -185,6 +186,7 @@ public class Color_QuizActivity extends AppCompatActivity {
         finalPoint.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         wrongPoints.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         finalPercentage.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
+        finalPercentage.setTextColor(Color.parseColor("#FFD81B60"));
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));

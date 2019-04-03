@@ -207,6 +207,7 @@ public class Animal_QuizActivity extends AppCompatActivity {
         finalPoint.setVisibility(findViewById(id.wrongPoint).VISIBLE);
         wrongPoints.setVisibility(findViewById(id.wrongPoint).VISIBLE);
         finalPercentage.setVisibility(findViewById(id.wrongPoint).VISIBLE);
+        finalPercentage.setTextColor(Color.parseColor("#FFD81B60"));
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));
