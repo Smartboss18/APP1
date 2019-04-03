@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void  onSignedOutInitialise(){
         mUsername = ANONYMOUS;
+//        SharedPreferenceUtils.deleteSharedPrefence(getApplicationContext());
     }
 
     public void getExistingUserDetails(){
@@ -168,14 +169,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
                 SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
                 SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
-                currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
                 userSignInType =  userEmail;
 
             } else if (userEmail == null) {
                 Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
                 SharedPreferenceUtils.checkUserExistance(getApplicationContext(), phoneNumber, "phoneNumber");
                 SharedPreferenceUtils.updateProgress("CurrentUser", phoneNumber, getApplicationContext());
-                currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
                 userSignInType = phoneNumber;
             }
         }

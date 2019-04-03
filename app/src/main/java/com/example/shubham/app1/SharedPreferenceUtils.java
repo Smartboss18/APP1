@@ -28,6 +28,7 @@ public class SharedPreferenceUtils {
     public static void updateProgress(String type, String value, final Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.putString(type, value);
         editor.apply();
     }
@@ -45,7 +46,7 @@ public class SharedPreferenceUtils {
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
 
-        db.collection("PROGRESS").document( user )
+        db.collection("PROGRESS").document(user)
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -58,13 +59,17 @@ public class SharedPreferenceUtils {
         });
     }
 
-    public static void checkUserExistance(final Context context, String user, String type){
+//    public static void deleteSharedPrefence(Context context){
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        sharedPreferences.edit().clear().commit();
+//    }
+
+    public static void checkUserExistance(final Context context, final String user, String type){
         Log.i("checkUserExistance", user +" " + type);
 
-        final String currentUser =  SharedPreferenceUtils.getDetail("CurrentUser", context);
 
             db.collection("PROGRESS")
-                    .document(currentUser)
+                    .document(user)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -72,9 +77,20 @@ public class SharedPreferenceUtils {
                             if (task.isSuccessful()){
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 if(documentSnapshot.exists()){
-                                    String animal = documentSnapshot.get("Animal").toString();
-                                    Log.i("ANimal", animal);
+                                    Log.i("Userrr", "Old");
+                                    documentSnapshot.getData();
+                                   String animal =  documentSnapshot.getString("Animal");
+                                    String color = documentSnapshot.getString("Color");
+                                    String fruit = documentSnapshot.getString("Fruit");
+
+                                    SharedPreferenceUtils.updateProgress("Animal", animal, context);
+                                    SharedPreferenceUtils.updateProgress("Color", color, context);
+                                    SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
+
                                 }else{
+
+                                    SharedPreferenceUtils.getDetail("Animal", context);
+                                    Log.i("Userrr", "New");
                                     Map<String, Object> progress = new HashMap<>();
                                     progress.put("Animal: ", "0");
                                     progress.put("Color: ", "0");
@@ -84,7 +100,7 @@ public class SharedPreferenceUtils {
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);
                                     SharedPreferenceUtils.updateProgress("Fruit", "0", context);
 
-                                    db.collection("PROGRESS").document(currentUser)
+                                    db.collection("PROGRESS").document(user)
                                             .set(progress)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
