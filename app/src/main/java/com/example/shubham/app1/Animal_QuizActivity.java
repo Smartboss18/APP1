@@ -120,9 +120,15 @@ public class Animal_QuizActivity extends AppCompatActivity {
         }
 
         public void generateAnswersArray(){
-            int[] images = {drawable.cat, drawable.dog, drawable.cow, drawable.duck, drawable.elephant, drawable.gorilla,
-                    drawable.panda, drawable.horse, drawable.goat, drawable.giraffes, drawable.camel, drawable.tiger};
-            names = new String[]{"Cat", "Dog", "Cow", "Duck", "Elephant", "Gorilla", "Panda", "Horse", "Goat", "Giraffe", "Camel", "Tiger"};
+            int[] images = {R.drawable.cat, R.drawable.cow, R.drawable.dog, R.drawable.duck, R.drawable.elephant,
+                    R.drawable.lion, R.drawable.tiger, R.drawable.camel, R.drawable.giraffes, R.drawable.goat,
+                    R.drawable.horse, R.drawable.panda, R.drawable.sloth, R.drawable.fox, R.drawable.squirrel,
+                    drawable.antelope, drawable.cheetah, drawable.pigeon,
+                    drawable.rabbit, drawable.turtle, drawable.zebra};
+            names = new String[]{"cat", "cow", "dog", "duck", "elephant", "lion", "tiger", "camel", "giraffe",
+                    "goat", "horse", "panda", "sloth", "fox", "squirrel",
+                    "antelope", "cheetah", "pigeon", "rabbit", "turtle",
+                    "zebra"};
 
             questionsArraylist = new ArrayList<QuizObject>();
 

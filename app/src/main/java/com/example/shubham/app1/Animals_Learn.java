@@ -50,9 +50,14 @@ public class Animals_Learn extends AppCompatActivity {
 
     public ArrayList<Learn> generateArrayList(){
         int[] images = {R.drawable.cat, R.drawable.cow, R.drawable.dog, R.drawable.duck, R.drawable.elephant,
-                        R.drawable.lion, R.drawable.tiger, R.drawable.camel, R.drawable.giraffes, R.drawable.goat,
-                        R.drawable.horse, R.drawable.panda};
-        String[] names = {"cat", "cow", "dog", "duck", "elephant", "lion", "tiger", "camel", "giraffe", "goat", "horse", "panda"};
+                R.drawable.lion, R.drawable.tiger, R.drawable.camel, R.drawable.giraffes, R.drawable.goat,
+                R.drawable.horse, R.drawable.panda, R.drawable.sloth, R.drawable.fox, R.drawable.squirrel,
+                R.drawable.antelope, R.drawable.cheetah, R.drawable.horse, R.drawable.pigeon,
+                R.drawable.rabbit, R.drawable.turtle, R.drawable.zebra};
+        String[] names = {"cat", "cow", "dog", "duck", "elephant", "lion", "tiger", "camel", "giraffe",
+                "goat", "horse", "panda", "sloth", "fox", "squirrel",
+                "antelope", "cheetah", "horse", "pigeon", "rabbit", "turtle",
+                "zebra"};;
 
         ArrayList<Learn> arrayList = new ArrayList<>();
 
