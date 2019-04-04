@@ -188,7 +188,6 @@ public class Color_QuizActivity extends AppCompatActivity {
         finalPoint.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         wrongPoints.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
         finalPercentage.setVisibility(findViewById(R.id.wrongPoint).VISIBLE);
-        finalPercentage.setTextColor(Color.parseColor("#FFD81B60"));
 
         finalPoint.setText("Correct answers: " + Integer.toString(points));
         wrongPoints.setText( "Wrong Answers: " + Integer.toString(incorrectPoints));
@@ -197,7 +196,7 @@ public class Color_QuizActivity extends AppCompatActivity {
 
         percentageFinal = String.format("%.2f", percent) + "%";
 
-        finalPercentage.setText( "Percentage: " + percentageFinal);
+        finalPercentage.setText( "Percentage: \n " + percentageFinal);
 
         Button retry = findViewById(R.id.retry);
         retry.setOnClickListener(new View.OnClickListener() {
