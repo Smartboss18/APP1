@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LearnActivity" />
-        <activity android:name=".Animal_QuizActivity" />
+        <activity android:name=".Animal_QuizActivity"/>
         <activity android:name=".Animals_Learn" />
         <activity android:name=".Fruits_Learn" />
         <activity android:name=".Colors_Learn" />

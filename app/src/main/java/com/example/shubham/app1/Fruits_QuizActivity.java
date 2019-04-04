@@ -53,10 +53,12 @@ public class Fruits_QuizActivity extends AppCompatActivity {
     String percentageFinal="0";
     int i=0;
 
+    CountDownTimer countDownTimer;
+
     public void getTimer(){
 
         progressBar.setProgress(i);
-        new CountDownTimer(31000,1000) {
+        countDownTimer = new CountDownTimer(31000,1000) {
 
             @Override
             public void onTick(long l) {
@@ -237,5 +239,16 @@ public class Fruits_QuizActivity extends AppCompatActivity {
         });
 
         SharedPreferenceUtils.updateProgress("Fruit", percentageFinal, getApplicationContext());
+    }
+
+    public void onBackPressed(){
+        try {
+            countDownTimer.cancel();
+            tick.stop();
+            end.stop();
+        }catch (Exception e){
+
+        }
+        super.onBackPressed();
     }
 }

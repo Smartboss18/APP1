@@ -56,6 +56,8 @@ public class Color_QuizActivity extends AppCompatActivity {
     String percentageFinal="0";
     int i=0;
 
+    CountDownTimer countDownTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,7 +223,7 @@ public class Color_QuizActivity extends AppCompatActivity {
     public void getTimer(){
 
         progressBar.setProgress(i);
-        new CountDownTimer(31000,1000) {
+        countDownTimer = new CountDownTimer(31000,1000) {
 
             @Override
             public void onTick(long l) {
@@ -239,5 +241,16 @@ public class Color_QuizActivity extends AppCompatActivity {
                 progressBar.setProgress(100);
             }
         }.start();
+    }
+
+    public void onBackPressed(){
+        try {
+            countDownTimer.cancel();
+            tick.stop();
+            end.stop();
+        }catch (Exception e){
+
+        }
+        super.onBackPressed();
     }
 }
