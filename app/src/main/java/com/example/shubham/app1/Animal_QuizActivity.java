@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,13 +32,14 @@ public class Animal_QuizActivity extends AppCompatActivity {
     TextView finalPercentage;
     Button start;
     RelativeLayout mainQuestion;
-    ConstraintLayout theEnd;
+    RelativeLayout theEnd;
     ImageView questionImage;
     Button button1;
     Button button2;
     Button button3;
     Button button4;
     ProgressBar progressBar;
+    RatingBar ratingBar;
 
     MediaPlayer mplayer;
     MediaPlayer tick;
@@ -117,7 +119,8 @@ public class Animal_QuizActivity extends AppCompatActivity {
         generateQuestion();
         getTimer();
         score.setText(Integer.toString(points));
-        }
+
+    }
 
         public void generateAnswersArray(){
             int[] images = {R.drawable.cat, R.drawable.cow, R.drawable.dog, R.drawable.duck, R.drawable.elephant,
@@ -225,6 +228,8 @@ public class Animal_QuizActivity extends AppCompatActivity {
 
         finalPercentage.setText( "Percentage: \n " + percentageFinal);
 
+
+
         Button retry = findViewById(id.retry);
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,6 +247,21 @@ public class Animal_QuizActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ratingBar = findViewById(id.ratingStar);
+
+        if (percent <21){
+            ratingBar.setRating(1);
+        }else if (percent >20 && percent < 41 ){
+            ratingBar.setRating(2);
+        }else if (percent >40 && percent < 61 ){
+            ratingBar.setRating(3);
+        }else if (percent >60 & percent < 81 ){
+            ratingBar.setRating(4);
+        }else if (percent > 80){
+            ratingBar.setRating(5);
+        }
+
 
         SharedPreferenceUtils.updateProgress("Animal", percentageFinal, getApplicationContext());
 

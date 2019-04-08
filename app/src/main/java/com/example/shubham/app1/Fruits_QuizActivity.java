@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,13 +31,14 @@ public class Fruits_QuizActivity extends AppCompatActivity {
     TextView finalPercentage;
     Button start;
     RelativeLayout mainQuestion;
-    ConstraintLayout theEnd;
+    RelativeLayout theEnd;
     ImageView questionImage;
     Button button1;
     Button button2;
     Button button3;
     Button button4;
     ProgressBar progressBar;
+    RatingBar ratingBar;
 
     MediaPlayer mplayer;
     MediaPlayer tick;
@@ -59,6 +61,7 @@ public class Fruits_QuizActivity extends AppCompatActivity {
 
         progressBar.setProgress(i);
         countDownTimer = new CountDownTimer(31000,1000) {
+
 
             @Override
             public void onTick(long l) {
@@ -236,6 +239,20 @@ public class Fruits_QuizActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ratingBar = findViewById(R.id.ratingStar);
+
+        if (percent <21){
+            ratingBar.setRating(1);
+        }else if (percent >20 && percent < 41 ){
+            ratingBar.setRating(2);
+        }else if (percent >40 && percent < 61 ){
+            ratingBar.setRating(3);
+        }else if (percent >60 & percent < 81 ){
+            ratingBar.setRating(4);
+        }else if (percent > 80){
+            ratingBar.setRating(5);
+        }
 
         SharedPreferenceUtils.updateProgress("Fruit", percentageFinal, getApplicationContext());
     }
