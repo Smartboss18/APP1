@@ -9,80 +9,141 @@
     tools:context=".TopicsFragments">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="74dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="100dp"
-        android:text="TOPICS"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="50sp"
-        android:textStyle="bold|italic" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="109dp"
-        android:layout_marginStart="30dp"
-        android:src="@color/colorAccent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:id="@+id/fruits"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/roundbutton"
-            android:text="FRUITS"
-            android:textColor="@android:color/white"
-            android:textSize="35sp"
-            app:layout_constraintTop_toBottomOf="@+id/colors"
-            tools:layout_editor_absoluteX="0dp" />
+            android:layout_alignParentStart="true">
 
-        <Button
-            android:id="@+id/animals"
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="44dp"
-            android:background="@drawable/roundbutton"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="ANIMALS"
-            android:textColor="@android:color/white"
-            android:textColorHighlight="@android:color/black"
-            android:textSize="35sp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="100dp"
+                android:text="TOPICS"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="50sp"
+                android:textStyle="bold|italic" />
 
-        <Button
-            android:id="@+id/colors"
-            android:layout_width="match_parent"
-            android:layout_height="94dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/roundbutton"
-            android:elevation="2dp"
-            android:text="COLORS"
-            android:textColor="@android:color/white"
-            android:textSize="35sp"
-            app:layout_constraintTop_toBottomOf="@+id/animals"
-            tools:layout_editor_absoluteX="0dp" />
-    </android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/fruits"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/roundbutton"
+                android:text="FRUITS"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colors" />
+
+            <Button
+                android:id="@+id/cultures"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/roundbutton"
+                android:text="cultures"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fruits" />
+
+            <Button
+                android:id="@+id/newTopic"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/roundbutton"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="new topic"
+                android:textColor="@android:color/white"
+                android:textColorHighlight="@android:color/black"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cultures" />
+
+            <Button
+                android:id="@+id/animals"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/roundbutton"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="ANIMALS"
+                android:textColor="@android:color/white"
+                android:textColorHighlight="@android:color/black"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/colors"
+                android:layout_width="match_parent"
+                android:layout_height="94dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/roundbutton"
+                android:elevation="2dp"
+                android:text="COLORS"
+                android:textColor="@android:color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/animals" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </RelativeLayout>
