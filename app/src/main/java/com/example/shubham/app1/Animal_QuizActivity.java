@@ -23,37 +23,26 @@ import static com.example.shubham.app1.R.*;
 
 public class Animal_QuizActivity extends AppCompatActivity {
 
-    TextView question;
-    TextView score;
-    TextView timer;
-    TextView outcome;
-    TextView finalPoint;
-    TextView wrongPoints;
-    TextView finalPercentage;
-    Button start;
-    RelativeLayout mainQuestion;
-    RelativeLayout theEnd;
+    TextView question, score, timer, outcome, finalPoint, wrongPoints, finalPercentage;
+
+    Button start, button1, button2, button3, button4;
+    RelativeLayout mainQuestion, theEnd;
     ImageView questionImage;
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
     ProgressBar progressBar;
     RatingBar ratingBar;
 
-    MediaPlayer mplayer;
-    MediaPlayer tick;
-    MediaPlayer end;
+    MediaPlayer mplayer, tick, end;
 
     QuizObject quiz;
     ArrayList<QuizObject> questionsArraylist;
     QuizObject animalsQuiz;
     String[] names;
-    int position = 0;
     Random rand;
+
+    String percentageFinal="0";
+    int position = 0;
     int points=0;
     int incorrectPoints=0;
-    String percentageFinal="0";
     int i=0;
 
     CountDownTimer countDownTimer;
