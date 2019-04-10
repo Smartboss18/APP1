@@ -251,7 +251,6 @@ public class Animal_QuizActivity extends AppCompatActivity {
             ratingBar.setRating(5);
         }
 
-
         SharedPreferenceUtils.updateProgress("Animal", percentageFinal, getApplicationContext());
 
     }
