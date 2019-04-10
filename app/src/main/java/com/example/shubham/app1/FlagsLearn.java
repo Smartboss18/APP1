@@ -1,17 +1,14 @@
 package com.example.shubham.app1;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-
 import java.util.ArrayList;
 
-public class Animals_Learn extends AppCompatActivity {
+public class FlagsLearn extends Activity {
 
     RecyclerView recyclerView;
     GridLayoutManager layoutManager;
@@ -21,7 +18,7 @@ public class Animals_Learn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animals__learn);
+        setContentView(R.layout.activity_flag_learn);
         adapter = new RecyclerAdapter(generateArrayList(), this);
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -37,15 +34,11 @@ public class Animals_Learn extends AppCompatActivity {
     }
 
     public ArrayList<Learn> generateArrayList(){
-        int[] images = {R.drawable.cat, R.drawable.cow, R.drawable.dog, R.drawable.duck, R.drawable.elephant,
-                R.drawable.lion, R.drawable.tiger, R.drawable.camel, R.drawable.giraffes, R.drawable.goat,
-                R.drawable.horse, R.drawable.panda, R.drawable.sloth, R.drawable.fox, R.drawable.squirrel,
-                R.drawable.antelope, R.drawable.cheetah, R.drawable.horse, R.drawable.pigeon,
-                R.drawable.rabbit, R.drawable.turtle, R.drawable.zebra};
-        String[] names = {"cat", "cow", "dog", "duck", "elephant", "lion", "tiger", "camel", "giraffe",
-                "goat", "horse", "panda", "sloth", "fox", "squirrel",
-                "antelope", "cheetah", "horse", "pigeon", "rabbit", "turtle",
-                "zebra"};;
+        int[] images = {R.drawable.afghanistan, R.drawable.algeria, R.drawable.angola, R.drawable.argentina, R.drawable.australia,
+                R.drawable.bahamas, R.drawable.bangladesh, R.drawable.belgium, R.drawable.benin,
+                R.drawable.brazil, R.drawable.burkinafaso};
+        String[] names = new String[]{"Afghanistan", "Algeria", "Angola", "Argentina", "Australia", "Bahamas", "Bangladesh", "Belgium", "Benin",
+                "Brazil", "Burkina Faso"};
 
         ArrayList<Learn> arrayList = new ArrayList<>();
 
@@ -56,3 +49,22 @@ public class Animals_Learn extends AppCompatActivity {
         return arrayList;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

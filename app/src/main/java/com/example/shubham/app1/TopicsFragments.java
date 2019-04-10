@@ -82,6 +82,25 @@ public class TopicsFragments extends Fragment {
            }
        });
 
+       Button topics_flags = view
+               .findViewById(R.id.flags);
+       topics_flags.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent;
+               android.view.animation.Animation aniSlide = android.view.animation.AnimationUtils.loadAnimation(getContext(),R.anim.slide_in);
+               if (type.equals("learn")){
+                   intent = new Intent(getContext(), FlagsLearn.class);
+                   startActivity(intent);
+
+               }
+               else if (type.equals("quiz")){
+                   intent = new Intent(getContext(), Flags_Quiz.class);
+                   startActivity(intent);
+               }
+           }
+       });
+
         return view;
     }
 }
