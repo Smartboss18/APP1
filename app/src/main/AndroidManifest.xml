@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/appicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         android:name="android.support.multidex.MultiDexApplication"
@@ -28,10 +28,10 @@
         <activity android:name=".Fruits_QuizActivity" />
         <activity android:name=".Color_QuizActivity" />
         <activity android:name=".ProgressActivity" />
-        <activity android:name=".SecurityPage"></activity>
+        <activity android:name=".SecurityPage" />
         <activity
             android:name=".FlagsLearn"
-            android:label="@string/title_activity_flags_learn"></activity>
+            android:label="@string/title_activity_flags_learn" />
     </application>
 
 </manifest>

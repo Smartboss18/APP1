@@ -28,7 +28,6 @@ public class SharedPreferenceUtils {
     public static void updateProgress(String type, String value, final Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString(type, value);
         editor.apply();
     }
@@ -36,15 +35,14 @@ public class SharedPreferenceUtils {
     public static String getDetail(String key, Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(key, "");
-
     }
 
     public static void updateProgressInCloud(final Context context, String user){
         final Map<String, Object> progressHashMap = new HashMap<>();
-
         progressHashMap.put("Animal", SharedPreferenceUtils.getDetail("Animal", context));
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
+        progressHashMap.put("Flags", SharedPreferenceUtils.getDetail("Flags", context));
 
         db.collection("PROGRESS").document(user)
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -65,8 +63,6 @@ public class SharedPreferenceUtils {
 
     public static void checkUserExistance(final Context context, final String user, String type){
         Log.i("checkUserExistance", user +" " + type);
-
-
             db.collection("PROGRESS")
                     .document(user)
                     .get()
@@ -79,43 +75,38 @@ public class SharedPreferenceUtils {
                                     Log.i("Userrr", "Old");
                                     documentSnapshot.getData();
 
-                                    Log.i("DATAAAA",  documentSnapshot.getString("Animal"));
                                     String animal =  documentSnapshot.getString("Animal");
                                     String color = documentSnapshot.getString("Color");
                                     String fruit = documentSnapshot.getString("Fruit");
+                                    String flags = documentSnapshot.getString("Flags");
 
                                     SharedPreferenceUtils.updateProgress("Animal", animal, context);
                                     SharedPreferenceUtils.updateProgress("Color", color, context);
                                     SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
-
+                                    SharedPreferenceUtils.updateProgress("Flags", flags, context);
                                 }else{
-
-                                    SharedPreferenceUtils.getDetail("Animal", context);
                                     Log.i("DATAAA", "New");
                                     Map<String, Object> progress = new HashMap<>();
                                     progress.put("Animal: ", "0");
                                     progress.put("Color: ", "0");
                                     progress.put("Fruit", "0");
-
-//                                    SharedPreferenceUtils.deleteSharedPrefence(context);
+                                    progress.put("Flags", "0");
 
                                     SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);
                                     SharedPreferenceUtils.updateProgress("Fruit", "0", context);
+                                    SharedPreferenceUtils.updateProgress("Flags", "0", context);
 
                                     db.collection("PROGRESS").document(user)
                                             .set(progress)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    Toast.makeText(context, "New User", Toast.LENGTH_SHORT).show();
-                                                    SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(context, "Couldn't add user.", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                 }
@@ -124,56 +115,5 @@ public class SharedPreferenceUtils {
                             }
                         }
                     });
-
-//        db.collection("PROGRESS")
-//                .whereEqualTo(type, user)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Log.i(" checkUserExistance", "USER FOUND SS");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.i(" checkUserExistance", "USER not FOUND ff");
-//                    }
-//                })
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                    String animal = document.get("Animal").toString();
-//                                    String color = document.get("Color").toString();
-//                                    String fruit = document.get("Fruit").toString();
-//
-//                                    SharedPreferenceUtils.updateProgress("Animal", animal, context);
-//                                    SharedPreferenceUtils.updateProgress("Color", color, context);
-//                                    SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
-//
-//                                    Log.i(" checkUserExistance", "USER FOUND");
-//                                }
-//                            } else {
-//                                SharedPreferenceUtils.updateProgress("Animal", String.valueOf(0), context);
-//                                SharedPreferenceUtils.updateProgress("Color", String.valueOf(0), context);
-//                                SharedPreferenceUtils.updateProgress("Fruit", String.valueOf(0), context);
-//                                Log.i(" checkUserExistance", "USER not FOUND");
-//                            }
-//                        }
-//                    });
     }
 }
-
-
-//    public static void updateProgressInCloud(final Context context){
-//
-//        final String emailID = SharedPreferenceUtils.getDetail("email" , context);
-//        final String phoneNumber = SharedPreferenceUtils.getDetail("phoneNumber", context);
-//
-//
-//        }
-//    }
-
-

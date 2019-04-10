@@ -10,16 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProgressActivity extends AppCompatActivity {
 
-    TextView animalPercent;
-    TextView fruitPercent;
-    TextView colorPercent;
-
+    TextView animalPercent, fruitPercent, colorPercent, flagPercent;
     FirebaseFirestore db;
-
-    String animalPoint;
-    String fruitPoint;
-    String colorPoint;
-    String currentUser;
+    String animalPoint, fruitPoint, colorPoint, flagPoint,currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +24,20 @@ public class ProgressActivity extends AppCompatActivity {
         animalPercent = findViewById(R.id.animalPercent);
         fruitPercent = findViewById(R.id.fruitPercent);
         colorPercent = findViewById(R.id.colorPercent);
+        flagPercent = findViewById(R.id.flagPercent);
 
        currentUser = SharedPreferenceUtils.getDetail("CurrentUser", this);
 
         animalPoint = SharedPreferenceUtils.getDetail("Animal", this);
         colorPoint = SharedPreferenceUtils.getDetail("Color", this);
         fruitPoint = SharedPreferenceUtils.getDetail("Fruit", this);
+        fruitPoint = SharedPreferenceUtils.getDetail("Flags", this);
 
         animalPercent.setText("ANIMALS: " + animalPoint);
         fruitPercent.setText("FRUITS: " + fruitPoint);
         colorPercent.setText("COLORS: " + colorPoint);
+        flagPercent.setText("FLAGS: " + flagPoint);
+
 
         String currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
 
