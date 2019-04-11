@@ -26,7 +26,7 @@ public class LearnActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_animals__learn);
+        setContentView(R.layout.activity_learn);
 
         Intent intent = getIntent();
         images = intent.getIntArrayExtra("images");
