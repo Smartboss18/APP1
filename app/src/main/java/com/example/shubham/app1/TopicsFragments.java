@@ -2,8 +2,11 @@ package com.example.shubham.app1;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +35,15 @@ public class TopicsFragments extends Fragment {
            @Override
 
            public void onClick(View view) {
-               Intent intent;
+
+               Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "Animal");
+               editor.commit();
+
                if (type.equals("learn")){
-                   intent = new Intent(getContext(), Animals_Learn.class);
-                   startActivity(intent);
-                   Toast.makeText(getContext(), "Click To Play Audio", Toast.LENGTH_LONG).show();
-               }
-               else if (type.equals("quiz")){
+                   intent = new Intent(getContext(), LearnActivity.class);
                    int[] images = {R.drawable.cat, R.drawable.cow, R.drawable.dog, R.drawable.duck, R.drawable.elephant,
                            R.drawable.lion, R.drawable.tiger, R.drawable.camel, R.drawable.giraffes, R.drawable.goat,
                            R.drawable.horse, R.drawable.panda, R.drawable.sloth, R.drawable.fox, R.drawable.squirrel,
@@ -48,13 +53,14 @@ public class TopicsFragments extends Fragment {
                            "goat", "horse", "panda", "sloth", "fox", "squirrel",
                            "antelope", "cheetah", "pigeon", "rabbit", "turtle",
                            "zebra"};
-
-                   intent = new Intent(getContext(), QuizActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
                    intent.putExtra("type", "Animal");
                    startActivity(intent);
-
+                   Toast.makeText(getContext(), "Click To Play Audio", Toast.LENGTH_LONG).show();
+               }
+               else if (type.equals("quiz")){
+                   QuizHelper.startQuiz(getContext(), intent);
                }
        }
        });
@@ -63,22 +69,25 @@ public class TopicsFragments extends Fragment {
        topic_fruits.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent;
-               android.view.animation.Animation aniSlide = android.view.animation.AnimationUtils.loadAnimation(getContext(),R.anim.slide_in);
-               if (type.equals("learn")){
-                   intent = new Intent(getContext(), Fruits_Learn.class);
-                   startActivity(intent);
 
-               }
-               else if (type.equals("quiz")){
+               Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "Fruit");
+               editor.commit();
+
+               if (type.equals("learn")){
                    int[] images = {R.drawable.apple, R.drawable.banana, R.drawable.cherry, R.drawable.kiwi,
                            R.drawable.orange, R.drawable.pear, R.drawable.pineapple, R.drawable.strawberry, R.drawable.grapes, R.drawable.watermelon};
                    String[] names = new String[]{"Apple", "Banana", "Cherry", "Kiwi", "Orange", "Pear", "Pineapple", "Strawberry", "Grapes", "Watermelon"};
-                   intent = new Intent(getContext(), QuizActivity.class);
+                   intent = new Intent(getContext(), LearnActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
                    intent.putExtra("type", "Fruit");
                    startActivity(intent);
+               }
+               else if (type.equals("quiz")){
+                  QuizHelper.startQuiz(getContext(), intent);
                }
            }
        });
@@ -87,21 +96,24 @@ public class TopicsFragments extends Fragment {
        topic_colors.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent;
-               if (type.equals("learn")){
-                   intent = new Intent(getContext(), Colors_Learn.class);
-                   startActivity(intent);
+               Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "Color");
+               editor.commit();
 
-               }
-               else if (type.equals("quiz")){
+               if (type.equals("learn")){
+                   intent = new Intent(getContext(), LearnActivity.class);
                    int[] images = {R.drawable.red, R.drawable.orangecolor, R.drawable.yellow, R.drawable.green,
                            R.drawable.blue,  R.drawable.indigo,R.drawable.violet};
                    String [] names = new String[]{"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
-                   intent = new Intent(getContext(), QuizActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
                    intent.putExtra("type", "Color");
                    startActivity(intent);
+               }
+               else if (type.equals("quiz")){
+                   QuizHelper.startQuiz(getContext(), intent);
                }
            }
        });
@@ -111,24 +123,22 @@ public class TopicsFragments extends Fragment {
        topics_flags.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent;
+               Intent intent = null;
                android.view.animation.Animation aniSlide = android.view.animation.AnimationUtils.loadAnimation(getContext(),R.anim.slide_in);
                if (type.equals("learn")){
-                   intent = new Intent(getContext(), FlagsLearn.class);
-                   startActivity(intent);
-
-               }
-               else if (type.equals("quiz")){
                    int[] images = {R.drawable.afghanistan, R.drawable.algeria, R.drawable.angola, R.drawable.argentina, R.drawable.australia,
                            R.drawable.bahamas, R.drawable.bangladesh, R.drawable.belgium, R.drawable.benin,
                            R.drawable.brazil, R.drawable.burkinafaso};
                    String[] names = new String[]{"Afghanistan", "Algeria", "Angola", "Argentina", "Australia", "Bahamas", "Bangladesh", "Belgium", "Benin",
                            "Brazil", "Burkina Faso"};
-                   intent = new Intent(getContext(), QuizActivity.class);
+                   intent = new Intent(getContext(), LearnActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
                    intent.putExtra("type", "Flags");
                    startActivity(intent);
+               }
+               else if (type.equals("quiz")){
+                  QuizHelper.startQuiz(getContext(), intent);
                }
            }
        });

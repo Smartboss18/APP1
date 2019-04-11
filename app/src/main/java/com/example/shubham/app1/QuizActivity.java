@@ -274,6 +274,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public  void releaseResources(){
+        try {
         countDownTimer.cancel();
         mplayer.release();
         mplayer =null;
@@ -281,5 +282,8 @@ public class QuizActivity extends AppCompatActivity {
         end =null;
         tick.release();
         tick = null;
+        }catch (Exception e){
+
+        }
     }
 }
