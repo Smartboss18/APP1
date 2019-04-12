@@ -42,7 +42,7 @@ public class SharedPreferenceUtils {
         progressHashMap.put("Animal", SharedPreferenceUtils.getDetail("Animal", context));
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
-        progressHashMap.put("Flags", SharedPreferenceUtils.getDetail("Flags", context));
+        progressHashMap.put("Flag", SharedPreferenceUtils.getDetail("Flag", context));
 
         db.collection("PROGRESS").document(user)
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -78,24 +78,24 @@ public class SharedPreferenceUtils {
                                     String animal =  documentSnapshot.getString("Animal");
                                     String color = documentSnapshot.getString("Color");
                                     String fruit = documentSnapshot.getString("Fruit");
-                                    String flags = documentSnapshot.getString("Flags");
+                                    String flags = documentSnapshot.getString("Flag");
 
                                     SharedPreferenceUtils.updateProgress("Animal", animal, context);
                                     SharedPreferenceUtils.updateProgress("Color", color, context);
                                     SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
-                                    SharedPreferenceUtils.updateProgress("Flags", flags, context);
+                                    SharedPreferenceUtils.updateProgress("Flag", flags, context);
                                 }else{
-                                    Log.i("DATAAA", "New");
+                                    
                                     Map<String, Object> progress = new HashMap<>();
                                     progress.put("Animal: ", "0");
                                     progress.put("Color: ", "0");
                                     progress.put("Fruit", "0");
-                                    progress.put("Flags", "0");
+                                    progress.put("Flag", "0");
 
                                     SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);
                                     SharedPreferenceUtils.updateProgress("Fruit", "0", context);
-                                    SharedPreferenceUtils.updateProgress("Flags", "0", context);
+                                    SharedPreferenceUtils.updateProgress("Flag", "0", context);
 
                                     db.collection("PROGRESS").document(user)
                                             .set(progress)

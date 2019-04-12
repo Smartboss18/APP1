@@ -73,9 +73,9 @@ public class Color_QuizActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start.setVisibility(view.INVISIBLE);
-                mainQuestion.setVisibility(view.VISIBLE);
-                questionImage.setVisibility(view.VISIBLE);
+                start.setVisibility(View.INVISIBLE);
+                mainQuestion.setVisibility(View.VISIBLE);
+                questionImage.setVisibility(View.VISIBLE);
                 tick = MediaPlayer.create(getApplicationContext(), R.raw.ticktock);
                 tick.start();
             }
@@ -232,7 +232,7 @@ public class Color_QuizActivity extends AppCompatActivity {
             public void onTick(long l) {
                 timer.setText(String.valueOf(l/1000) + "s");
                 i++;
-                progressBar.setProgress((int)i*100/(31000/1000));
+                progressBar.setProgress(i *100/(31000/1000));
             }
 
             @Override

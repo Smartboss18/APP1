@@ -58,7 +58,7 @@ public class QuizHelper {
             intent = new Intent(context, QuizActivity.class);
             intent.putExtra("images", images);
             intent.putExtra("names", names);
-            intent.putExtra("type", "Flags");
+            intent.putExtra("type", "Flag");
             context.startActivity(intent);
         }
 

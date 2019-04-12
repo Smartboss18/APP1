@@ -36,8 +36,6 @@ public class LearnActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         type = sharedPreferences.getString("Type", "");
 
-        Log.i("Workssss", String.valueOf(names));
-
         if (images == null || names == null || quizType == null)return;
 
         adapter = new RecyclerAdapter(generateArrayList(), this);

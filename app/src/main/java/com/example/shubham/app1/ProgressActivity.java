@@ -31,7 +31,7 @@ public class ProgressActivity extends AppCompatActivity {
         animalPoint = SharedPreferenceUtils.getDetail("Animal", this);
         colorPoint = SharedPreferenceUtils.getDetail("Color", this);
         fruitPoint = SharedPreferenceUtils.getDetail("Fruit", this);
-        fruitPoint = SharedPreferenceUtils.getDetail("Flags", this);
+        flagPoint = SharedPreferenceUtils.getDetail("Flag", this);
 
         animalPercent.setText("ANIMALS: " + animalPoint);
         fruitPercent.setText("FRUITS: " + fruitPoint);

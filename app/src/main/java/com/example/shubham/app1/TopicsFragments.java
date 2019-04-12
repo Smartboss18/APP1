@@ -123,7 +123,13 @@ public class TopicsFragments extends Fragment {
        topics_flags.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+
                Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "Flag");
+               editor.commit();
+
                android.view.animation.Animation aniSlide = android.view.animation.AnimationUtils.loadAnimation(getContext(),R.anim.slide_in);
                if (type.equals("learn")){
                    int[] images = {R.drawable.afghanistan, R.drawable.algeria, R.drawable.angola, R.drawable.argentina, R.drawable.australia,
@@ -134,7 +140,7 @@ public class TopicsFragments extends Fragment {
                    intent = new Intent(getContext(), LearnActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
-                   intent.putExtra("type", "Flags");
+                   intent.putExtra("type", "Flag");
                    startActivity(intent);
                }
                else if (type.equals("quiz")){
