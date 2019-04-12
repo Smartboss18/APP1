@@ -62,7 +62,7 @@ public class SharedPreferenceUtils {
     }
 
     public static void checkUserExistance(final Context context, final String user, String type){
-        Log.i("checkUserExistance", user +" " + type);
+
             db.collection("PROGRESS")
                     .document(user)
                     .get()
