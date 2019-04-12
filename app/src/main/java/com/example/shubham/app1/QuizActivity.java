@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import static com.example.shubham.app1.R.drawable.quiz_correct_answer;
+
 public class QuizActivity extends AppCompatActivity {
 
     TextView question, score, timer, outcome, finalPoint, wrongPoints, finalPercentage;
@@ -145,13 +147,13 @@ public class QuizActivity extends AppCompatActivity {
 
     public void chooseAnswer(View view){
 
-        Button button = (Button)view;
+        final Button button = (Button)view;
         String answer = button.getText().toString();
 
         if (answer.equals(quiz.name)){
             outcome.setText("Correct!");
+            button.setBackgroundResource(R.drawable.quiz_correct_answer);
             outcome.setTextColor(android.graphics.Color.parseColor("#97ea33"));
-//            button.setBackgroundColor(Color.parseColor("#6ee02f"));
             points++;
             score.setText(Integer.toString(points));
             mplayer = MediaPlayer.create(getApplicationContext(), R.raw.correct);
@@ -159,13 +161,22 @@ public class QuizActivity extends AppCompatActivity {
         }else{
             outcome.setText("Wrong!!!");
             outcome.setTextColor(android.graphics.Color.parseColor("#f14839"));
-//            button.setBackgroundColor(Color.parseColor("#ed6068"));
+            button.setBackgroundResource(R.drawable.quiz_wrong_answer);
             incorrectPoints++;
             mplayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
             mplayer.start();
         }
-        position++;
-        generateQuestion();
+        countDownTimer = new CountDownTimer(300,100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+            @Override
+            public void onFinish() {
+                button.setBackgroundResource(R.drawable.quiz_options);
+                position++;
+                generateQuestion();
+            }
+        }.start();
     }
 
     public void theEnd(){
@@ -285,5 +296,9 @@ public class QuizActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+    }
+
+    public void correctAns(){
+
     }
 }
