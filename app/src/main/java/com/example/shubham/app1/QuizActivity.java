@@ -180,15 +180,19 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void theEnd(){
-        end = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
-        end.start();
-        end.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                end.reset();
-            }
-        });
-
+        try {
+            end = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
+            end.start();
+            end.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                   try {
+                       end.reset();
+                   }catch (Exception e){}
+                }
+            });
+        }catch (Exception e){
+        }
         mainQuestion.setVisibility(findViewById(R.id.mainQuestionPage).INVISIBLE);
         start.setVisibility(findViewById(R.id.go).INVISIBLE);
         theEnd.setVisibility(findViewById(R.id.theEnd).VISIBLE);
@@ -296,9 +300,5 @@ public class QuizActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
-    }
-
-    public void correctAns(){
-
     }
 }
