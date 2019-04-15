@@ -43,10 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     Random rand;
 
     String percentageFinal="0";
-    int position = 0;
-    int points=0;
-    int incorrectPoints=0;
-    int i=0;
+    int position = 0, points=0, incorrectPoints=0, i=0;
 
     CountDownTimer countDownTimer;
 
@@ -126,6 +123,7 @@ public class QuizActivity extends AppCompatActivity {
             animalsQuiz.setAllAnswers(allAnswers);
 
             questionsArraylist.add(animalsQuiz);
+            Collections.shuffle(questionsArraylist);
         }
     }
 
