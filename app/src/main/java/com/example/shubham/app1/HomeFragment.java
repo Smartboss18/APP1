@@ -59,15 +59,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button progress = view.findViewById(R.id.progress);
-
-        progress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Animal_QuizActivity.class);
-                startActivity(intent);
-            }
-        });
 
         Button progressButton = view.findViewById(R.id.progress);
         progressButton.setOnClickListener(new View.OnClickListener() {

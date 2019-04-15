@@ -39,17 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public void learn(View view){
-    }
-
-    public void quiz(View view){
-        Intent learn = new Intent(this, Animal_QuizActivity.class);
-        startActivity(learn);
-    }
-
-    public  void progress(View view){
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
