@@ -216,12 +216,12 @@ public class QuizActivity extends AppCompatActivity {
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                Intent intent = null;
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Type", quizType);
                 editor.commit();
-                startActivity(intent);
+                QuizHelper.startQuiz(getApplicationContext(), intent);
             }
         });
 

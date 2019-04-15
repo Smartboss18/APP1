@@ -49,8 +49,12 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     public void takeQuiz(View view){
-        Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-        startActivity(intent);
+        Intent intent = null;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Type", quizType);
+        editor.commit();
+        QuizHelper.startQuiz(getApplicationContext(), intent);
     }
 
     public ArrayList<Learn> generateArrayList(){

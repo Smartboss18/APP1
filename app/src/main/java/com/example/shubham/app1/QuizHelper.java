@@ -27,6 +27,7 @@ public class QuizHelper {
             intent.putExtra("images", images);
             intent.putExtra("names", names);
             intent.putExtra("type", "Animal");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
         }else if (type.equals("Color")){
@@ -37,6 +38,7 @@ public class QuizHelper {
             intent.putExtra("images", images);
             intent.putExtra("names", names);
             intent.putExtra("type", "Color");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
         }else if (type.equals("Fruit")){
@@ -47,6 +49,7 @@ public class QuizHelper {
             intent.putExtra("images", images);
             intent.putExtra("names", names);
             intent.putExtra("type", "Fruit");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
         }else if (type.equals("Flag")){
@@ -59,6 +62,7 @@ public class QuizHelper {
             intent.putExtra("images", images);
             intent.putExtra("names", names);
             intent.putExtra("type", "Flag");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
 

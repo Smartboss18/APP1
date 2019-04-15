@@ -10,8 +10,7 @@
 
     <style name="RatingBar" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@color/colorPrimaryDark</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlActivated">#FFD700</item>
     </style>
-
 
 </resources>
