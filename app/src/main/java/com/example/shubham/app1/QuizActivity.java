@@ -1,8 +1,10 @@
 package com.example.shubham.app1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -214,8 +216,11 @@ public class QuizActivity extends AppCompatActivity {
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(getApplicationContext(), Color_QuizActivity.class);
+                Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Type", quizType);
+                editor.commit();
                 startActivity(intent);
             }
         });
@@ -243,9 +248,11 @@ public class QuizActivity extends AppCompatActivity {
             ratingBar.setRating(5);
         }
 
-        tick.reset();
-        mplayer.reset();
-        countDownTimer.cancel();
+        try {
+            tick.reset();
+            mplayer.reset();
+            countDownTimer.cancel();
+        }catch (Exception e){ }
 
         SharedPreferenceUtils.updateProgress(quizType, percentageFinal, getApplicationContext());
     }
