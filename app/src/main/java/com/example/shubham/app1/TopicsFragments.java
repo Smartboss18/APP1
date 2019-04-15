@@ -149,6 +149,36 @@ public class TopicsFragments extends Fragment {
            }
        });
 
+       Button road_signs = view.findViewById(R.id.roadSigns);
+       road_signs.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "RoadSign");
+               editor.commit();
+
+               if (type.equals("learn")){
+                   int[] images = {R.drawable.bicycle_traffic, R.drawable.hill_warning, R.drawable.men_at_work, R.drawable.no_right_turn, R.drawable.no_left_turn,
+                           R.drawable.no_parking, R.drawable.no_pedestrian, R.drawable.no_truck, R.drawable.no_uturn, R.drawable.pedestrian_crossing,
+                           R.drawable.school_zone, R.drawable.slippery_road, R.drawable.speed_limit, R.drawable.two_way_sign};
+                   String[] names = new String[]{"Bicycle \n Traffic", "Hill Warning", "Men At \n work", "no \n right turn", "no \n left turn", "no \n parking",
+                                    "no \n pedestrian", "no truck", "no u-turn", "pedestrian \n crossing", "School \n zone", "slippery \n zone",
+                                    "speed limit", "two-way"};
+                   intent = new Intent(getContext(), LearnActivity.class);
+                   intent.putExtra("images", images);
+                   intent.putExtra("names", names);
+                   intent.putExtra("type", "RoadSign");
+                   startActivity(intent);
+               }
+               else if (type.equals("quiz")){
+                   QuizHelper.startQuiz(getContext(), intent);
+               }
+           }
+       });
+
         return view;
     }
 }

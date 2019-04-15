@@ -43,6 +43,7 @@ public class SharedPreferenceUtils {
         progressHashMap.put("Color", SharedPreferenceUtils.getDetail("Color", context));
         progressHashMap.put("Fruit", SharedPreferenceUtils.getDetail("Fruit", context));
         progressHashMap.put("Flag", SharedPreferenceUtils.getDetail("Flag", context));
+        progressHashMap.put("RoadSign", SharedPreferenceUtils.getDetail("RoadSign", context));
 
         db.collection("PROGRESS").document(user)
                 .set(progressHashMap, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -79,11 +80,14 @@ public class SharedPreferenceUtils {
                                     String color = documentSnapshot.getString("Color");
                                     String fruit = documentSnapshot.getString("Fruit");
                                     String flags = documentSnapshot.getString("Flag");
+                                    String road_sign = documentSnapshot.getString("RoadSign");
 
                                     SharedPreferenceUtils.updateProgress("Animal", animal, context);
                                     SharedPreferenceUtils.updateProgress("Color", color, context);
                                     SharedPreferenceUtils.updateProgress("Fruit", fruit, context);
                                     SharedPreferenceUtils.updateProgress("Flag", flags, context);
+                                    SharedPreferenceUtils.updateProgress("RoadSign", road_sign, context);
+
                                 }else{
                                     
                                     Map<String, Object> progress = new HashMap<>();
@@ -91,11 +95,13 @@ public class SharedPreferenceUtils {
                                     progress.put("Color: ", "0");
                                     progress.put("Fruit", "0");
                                     progress.put("Flag", "0");
+                                    progress.put("RoadSign", "0");
 
                                     SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);
                                     SharedPreferenceUtils.updateProgress("Fruit", "0", context);
                                     SharedPreferenceUtils.updateProgress("Flag", "0", context);
+                                    SharedPreferenceUtils.updateProgress("RoadSign", "0", context);
 
                                     db.collection("PROGRESS").document(user)
                                             .set(progress)
