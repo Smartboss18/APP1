@@ -69,9 +69,9 @@ public class QuizHelper {
             int[] images = {R.drawable.bicycle_traffic, R.drawable.hill_warning, R.drawable.men_at_work, R.drawable.no_right_turn, R.drawable.no_left_turn,
                     R.drawable.no_parking, R.drawable.no_pedestrian, R.drawable.no_truck, R.drawable.no_uturn, R.drawable.pedestrian_crossing,
                     R.drawable.school_zone, R.drawable.slippery_road, R.drawable.speed_limit, R.drawable.two_way_sign};
-            String[] names = new String[]{"Bicycle \n Traffic", "Hill Warning", "Men At \n work", "no \n right turn", "no \n left turn", "no \n parking",
-                    "no \n pedestrian", "no truck", "no u-turn", "pedestrian \n crossing", "School \n zone", "slippery \n zone",
-                    "speed limit", "two-way"};
+            String[] names = new String[]{"Bicycle \n Traffic", "Hill Warning", "Men At \n Work", "No \n Right Turn", "No \n Left Turn", "No \n Parking",
+                    "No \n Pedestrian", "No Truck", "No U-Turn", "Pedestrian \n Crossing", "School \n Zone", "Slippery \n Zone",
+                    "Speed Limit", "Two-Way"};
             intent = new Intent(context, QuizActivity.class);
             intent.putExtra("images", images);
             intent.putExtra("names", names);
