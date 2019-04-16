@@ -73,7 +73,6 @@ public class SharedPreferenceUtils {
                             if (task.isSuccessful()){
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 if(documentSnapshot.exists()){
-                                    Log.i("Userrr", "Old");
                                     documentSnapshot.getData();
 
                                     String animal =  documentSnapshot.getString("Animal");
@@ -93,9 +92,9 @@ public class SharedPreferenceUtils {
                                     Map<String, Object> progress = new HashMap<>();
                                     progress.put("Animal: ", "0");
                                     progress.put("Color: ", "0");
-                                    progress.put("Fruit", "0");
-                                    progress.put("Flag", "0");
-                                    progress.put("RoadSign", "0");
+                                    progress.put("Fruit: ", "0");
+                                    progress.put("Flag: ", "0");
+                                    progress.put("RoadSign: ", "0");
 
                                     SharedPreferenceUtils.updateProgress("Animal", "0", context);
                                     SharedPreferenceUtils.updateProgress("Color", "0", context);

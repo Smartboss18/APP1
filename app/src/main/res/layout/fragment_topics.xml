@@ -135,7 +135,7 @@
                 android:background="@drawable/roundbutton"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="road signs"
+                android:text="ROADS"
                 android:textColor="@android:color/white"
                 android:textColorHighlight="@android:color/black"
                 android:textSize="35sp"
