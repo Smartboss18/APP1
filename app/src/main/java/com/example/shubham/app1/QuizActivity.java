@@ -187,7 +187,7 @@ public class QuizActivity extends AppCompatActivity {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                    try {
-                       end.reset();
+                       end.stop();
                    }catch (Exception e){}
                 }
             });
@@ -214,6 +214,7 @@ public class QuizActivity extends AppCompatActivity {
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                releaseResources();
                 Intent intent = null;
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -227,6 +228,7 @@ public class QuizActivity extends AppCompatActivity {
         homePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                releaseResources();
                 Intent intent = new Intent(getApplicationContext(), new MainActivity().getClass());
                 startActivity(intent);
             }
