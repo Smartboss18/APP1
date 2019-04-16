@@ -236,7 +236,9 @@ public class QuizActivity extends AppCompatActivity {
 
         ratingBar = findViewById(R.id.ratingStar);
 
-        if (percent <21){
+        if (percent == 0){
+          ratingBar.setRating(0);
+        } else if (percent <21){
             ratingBar.setRating(1);
         }else if (percent >20 && percent < 41 ){
             ratingBar.setRating(2);

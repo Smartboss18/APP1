@@ -4,7 +4,7 @@
     android:layout_width="350dp"
     android:layout_height="475dp"
     android:layout_gravity="center"
-    android:background="#ffd9d9"
+    android:background="@color/common_google_signin_btn_text_dark_focused"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -17,14 +17,24 @@
         android:text="X"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        tools:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/textViewD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Call Us:"
         android:textColor="@android:color/white"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="0123456789"
+        android:textColor="#00ddff"
+        android:textSize="25sp" />
 
 </LinearLayout>

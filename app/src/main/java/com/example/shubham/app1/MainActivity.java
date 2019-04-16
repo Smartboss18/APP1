@@ -1,9 +1,13 @@
 package com.example.shubham.app1;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment,new HomeFragment());
+        ft.add(R.id.fragment, new HomeFragment());
         ft.commit();
 
         mydialog = new Dialog(this);
@@ -76,21 +80,21 @@ public class MainActivity extends AppCompatActivity {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user  = firebaseAuth.getCurrentUser();
-                if (user!=null){
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
                     getExistingUserDetails();
 
-                }else{
+                } else {
                     onSignedOutInitialise();
                     Log.i("DDDD", "hhhhhhhh");
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
                                     .setAvailableProviders(providers)
-                            .build(),
+                                    .build(),
                             RC_SIGN_IN
                     );
-                } 
+                }
             }
         };
     }
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
                 return true;
@@ -122,20 +126,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGN_IN){
-            if(resultCode == RESULT_OK){
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
                 //Toast.makeText(this, "SIGNED IN!", Toast.LENGTH_SHORT).show();
                 //getExistingUserDetails();
 
-            }else if(resultCode == RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "SIGN IN CANCELED", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -148,19 +152,19 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 
-    public void  onSignedInInitialise(String username){
+    public void onSignedInInitialise(String username) {
         mUsername = username;
     }
 
-    public void  onSignedOutInitialise(){
+    public void onSignedOutInitialise() {
         mUsername = ANONYMOUS;
         SharedPreferenceUtils.deleteSharedPrefence(getApplicationContext());
     }
 
-    public void getExistingUserDetails(){
+    public void getExistingUserDetails() {
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
 
-        if (user!=null) {
+        if (user != null) {
             Toast.makeText(this, "sn", Toast.LENGTH_SHORT).show();
             onSignedInInitialise(user.getDisplayName());
             String userID = user.getUid();
@@ -170,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, userEmail, Toast.LENGTH_SHORT).show();
                 SharedPreferenceUtils.checkUserExistance(getApplicationContext(), userEmail, "email");
                 SharedPreferenceUtils.updateProgress("CurrentUser", userEmail, getApplicationContext());
-                userSignInType =  userEmail;
+                userSignInType = userEmail;
 
             } else if (userEmail == null) {
                 Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
@@ -181,15 +185,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void displayDialogueBox(){
+    public void displayDialogueBox() {
         TextView txtclose;
-        TextView textViewD;
+        TextView phoneNumber;
 
         mydialog.setContentView(R.layout.dialogue_box);
-        txtclose =mydialog.findViewById(R.id.txtclose);
-        textViewD=mydialog.findViewById(R.id.textViewD);
+        txtclose = mydialog.findViewById(R.id.txtclose);
+        phoneNumber = mydialog.findViewById(R.id.number);
 
-        textViewD.setText("Done");
+        phoneNumber.setText("1234567890");
 
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,7 +201,18 @@ public class MainActivity extends AppCompatActivity {
                 mydialog.dismiss();
             }
         });
+        phoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialContactPhone("0123456789");
+            }
+        });
+
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mydialog.show();
+    }
+
+    private void dialContactPhone(final String phoneNumber) {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 }

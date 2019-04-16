@@ -3,6 +3,7 @@
     package="com.example.shubham.app1">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -20,18 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LearnActivity" />
-        <activity android:name=".Flags_Quiz" />
-        <activity android:name=".Animal_QuizActivity" />
-        <activity android:name=".Animals_Learn" />
-        <activity android:name=".Fruits_Learn" />
-        <activity android:name=".Colors_Learn" />
-        <activity android:name=".Fruits_QuizActivity" />
-        <activity android:name=".Color_QuizActivity" />
         <activity android:name=".ProgressActivity" />
-        <activity android:name=".SecurityPage" />
-        <activity
-            android:name=".FlagsLearn"
-            android:label="@string/title_activity_flags_learn" />
         <activity android:name=".QuizActivity"></activity>
     </application>
 
