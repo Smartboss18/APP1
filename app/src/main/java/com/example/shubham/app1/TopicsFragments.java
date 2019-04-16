@@ -26,6 +26,8 @@ public class TopicsFragments extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Toast.makeText(getContext(), "Scroll For More", Toast.LENGTH_LONG).show();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_topics, container, false);
 
