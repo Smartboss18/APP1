@@ -107,8 +107,8 @@ public class TopicsFragments extends Fragment {
                if (type.equals("learn")){
                    intent = new Intent(getContext(), LearnActivity.class);
                    int[] images = {R.drawable.red, R.drawable.orangecolor, R.drawable.yellow, R.drawable.green,
-                           R.drawable.blue,  R.drawable.indigo,R.drawable.violet};
-                   String [] names = new String[]{"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
+                           R.drawable.blue,  R.drawable.indigo,R.drawable.violet, R.drawable.pink};
+                   String [] names = new String[]{"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Pink"};
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);
                    intent.putExtra("type", "Color");

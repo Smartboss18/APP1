@@ -32,8 +32,8 @@ public class QuizHelper {
 
         }else if (type.equals("Color")){
             int[] images = {R.drawable.red, R.drawable.orangecolor, R.drawable.yellow, R.drawable.green,
-                    R.drawable.blue,  R.drawable.indigo,R.drawable.violet};
-            String [] names = new String[]{"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"};
+                    R.drawable.blue,  R.drawable.indigo,R.drawable.violet, R.drawable.pink};
+            String [] names = new String[]{"Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", "Pink"};
             intent = new Intent(context, QuizActivity.class);
             intent.putExtra("images", images);
             intent.putExtra("names", names);
