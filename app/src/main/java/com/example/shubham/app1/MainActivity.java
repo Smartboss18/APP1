@@ -1,5 +1,8 @@
 package com.example.shubham.app1;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     String currentUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String userSignInType;
+
+    Dialog mydialog;
 
     public static final String ANONYMOUS = "anonymous";
 
@@ -58,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment,new HomeFragment());
         ft.commit();
+
+        mydialog = new Dialog(this);
 
         final ArrayList<AuthUI.IdpConfig> providers = new ArrayList<>(asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -98,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
+                return true;
+            case R.id.about_us:
+                displayDialogueBox();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -167,5 +179,25 @@ public class MainActivity extends AppCompatActivity {
                 userSignInType = phoneNumber;
             }
         }
+    }
+
+    public void displayDialogueBox(){
+        TextView txtclose;
+        TextView textViewD;
+
+        mydialog.setContentView(R.layout.dialogue_box);
+        txtclose =mydialog.findViewById(R.id.txtclose);
+        textViewD=mydialog.findViewById(R.id.textViewD);
+
+        textViewD.setText("Done");
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mydialog.dismiss();
+            }
+        });
+        mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mydialog.show();
     }
 }
