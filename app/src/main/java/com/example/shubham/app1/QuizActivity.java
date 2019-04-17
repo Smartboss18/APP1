@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,8 @@ public class QuizActivity extends AppCompatActivity {
     TextView question, score, timer, outcome, finalPoint, wrongPoints, finalPercentage;
 
     Button start, button1, button2, button3, button4;
-    RelativeLayout mainQuestion, theEnd;
+    ConstraintLayout mainQuestion;
+    RelativeLayout theEnd;
     ImageView questionImage;
     ProgressBar progressBar;
     RatingBar ratingBar;
