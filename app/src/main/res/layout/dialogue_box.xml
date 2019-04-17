@@ -15,7 +15,7 @@
         android:layout_gravity="end"
         android:gravity="center"
         android:text="X"
-        android:textColor="@android:color/black"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:text="Call Us:"
-        android:textColor="@android:color/black"
+        android:textColor="#ffffff"
         android:textSize="30sp" />
 
     <TextView

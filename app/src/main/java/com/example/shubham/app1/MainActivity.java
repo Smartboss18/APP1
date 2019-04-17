@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +60,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseApp.initializeApp(getApplicationContext());
-
         mFirebaseAuth = FirebaseAuth.getInstance();
         mUsername = ANONYMOUS;
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-        FragmentManager fm = getSupportFragmentManager();
 
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment, new HomeFragment());
         ft.commit();
@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.about_us:
                 displayDialogueBox();
+                return true;
+            case R.id.share_us:
+                shareUs();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -201,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 mydialog.dismiss();
             }
         });
+
         phoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,6 +214,15 @@ public class MainActivity extends AppCompatActivity {
 
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mydialog.show();
+    }
+
+    public void shareUs(){
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Here is the share content body";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
     private void dialContactPhone(final String phoneNumber) {

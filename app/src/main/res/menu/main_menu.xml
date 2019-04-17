@@ -7,6 +7,10 @@
         android:title="About Us"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/share_us"
+        android:title="Share Us"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/sign_out_menu"
         android:title="Sign Out"
         app:showAsAction="never"/>
