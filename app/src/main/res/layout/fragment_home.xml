@@ -27,7 +27,6 @@
             android:layout_marginBottom="94dp"
             android:background="@drawable/homepage_button_back"
             android:cursorVisible="false"
-            android:lineSpacingExtra="white"
             android:onClick="quiz"
             android:text="quiz"
             android:textColor="@android:color/white"
