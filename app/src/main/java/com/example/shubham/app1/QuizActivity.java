@@ -95,11 +95,9 @@ public class QuizActivity extends AppCompatActivity {
         score.setText(Integer.toString(points));
     }
 
-
     public void generateAnswersArray(){
 
         questionsArraylist = new ArrayList<QuizObject>();
-
         for(int i=0; i<images.length; i++) {
 
             Random random = new Random();
@@ -142,7 +140,9 @@ public class QuizActivity extends AppCompatActivity {
             button4.setText(quiz.getAllAnswers().get(3));
         }else{
             theEnd();
-            tick.stop();
+            try {
+                tick.stop();
+            }catch (Exception e){ }
         }
         position++;
     }
@@ -188,13 +188,14 @@ public class QuizActivity extends AppCompatActivity {
             end.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                   try {
-                       end.stop();
-                   }catch (Exception e){}
+                    try {
+                        end.stop();
+                    }catch (Exception e){ }
                 }
             });
         }catch (Exception e){
         }
+
         mainQuestion.setVisibility(findViewById(R.id.mainQuestionPage).INVISIBLE);
         start.setVisibility(findViewById(R.id.go).INVISIBLE);
         theEnd.setVisibility(findViewById(R.id.theEnd).VISIBLE);
@@ -309,7 +310,6 @@ public class QuizActivity extends AppCompatActivity {
         tick.release();
         tick = null;
         }catch (Exception e){
-
         }
     }
 }
