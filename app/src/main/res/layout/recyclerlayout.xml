@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,25 +10,34 @@
     >
 
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/animal"
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:src="@drawable/cat"
-        android:id="@+id/animal"
+        android:layout_marginBottom="10dp"
         android:elevation="20dp"
-        />
+        android:src="@drawable/cat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/animalName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/animalName"
         android:layout_width="188dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:background="@drawable/background"
         android:elevation="20dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
         android:padding="10dp"
         android:text="NAME"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/animal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.58" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
