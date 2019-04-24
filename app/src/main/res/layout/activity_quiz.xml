@@ -118,7 +118,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <Button
             android:id="@+id/go"
@@ -149,7 +149,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -171,12 +171,12 @@
             android:id="@+id/outcome"
             android:layout_width="225dp"
             android:layout_height="43dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="66dp"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="40sp"
@@ -205,17 +205,18 @@
         <TextView
             android:id="@+id/question"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="54dp"
             android:layout_marginBottom="5dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:autoText="true"
             android:gravity="center"
             android:text="What is shown below?"
             android:textColor="@android:color/holo_orange_light"
-            android:textSize="35sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/score"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -239,9 +240,9 @@
             android:id="@+id/timer"
             android:layout_width="45dp"
             android:layout_height="38dp"
-            android:layout_marginEnd="18dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="18dp"
+            android:layout_marginRight="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="69dp"
             android:gravity="center"
