@@ -112,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
                 return true;
-            case R.id.about_us:
-                displayDialogueBox();
-                return true;
+//            case R.id.about_us:
+//                displayDialogueBox();
+//                return true;
             case R.id.share_us:
                 shareUs();
                 return true;
