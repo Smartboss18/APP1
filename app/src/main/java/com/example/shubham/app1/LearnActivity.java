@@ -1,7 +1,9 @@
 package com.example.shubham.app1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +43,12 @@ public class LearnActivity extends AppCompatActivity {
         adapter = new RecyclerAdapter(generateArrayList(), this);
 
         recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new GridLayoutManager(this, 1);
+
+        if (isTablet(getApplicationContext()) == true){
+            layoutManager = new GridLayoutManager(this, 2);
+        }else{
+            layoutManager = new GridLayoutManager(this, 1);
+        }
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -66,5 +73,11 @@ public class LearnActivity extends AppCompatActivity {
             arrayList.add(learn);
         }
         return arrayList;
+    }
+
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }
