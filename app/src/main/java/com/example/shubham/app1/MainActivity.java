@@ -1,13 +1,10 @@
 package com.example.shubham.app1;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
@@ -18,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,14 +52,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        firstTimeCheck();
         setContentView(R.layout.activity_main);
 
         FirebaseApp.initializeApp(getApplicationContext());
         mFirebaseAuth = FirebaseAuth.getInstance();
         mUsername = ANONYMOUS;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -168,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
 
         if (user != null) {
-            Toast.makeText(this, "sn", Toast.LENGTH_SHORT).show();
             onSignedInInitialise(user.getDisplayName());
             String userID = user.getUid();
             String userEmail = user.getEmail();
@@ -191,27 +184,22 @@ public class MainActivity extends AppCompatActivity {
     public void displayDialogueBox() {
         TextView txtclose;
         TextView phoneNumber;
-
         mydialog.setContentView(R.layout.dialogue_box);
         txtclose = mydialog.findViewById(R.id.txtclose);
         phoneNumber = mydialog.findViewById(R.id.number);
-
         phoneNumber.setText("1234567890");
-
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mydialog.dismiss();
             }
         });
-
         phoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialContactPhone("0123456789");
             }
         });
-
         mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mydialog.show();
     }
