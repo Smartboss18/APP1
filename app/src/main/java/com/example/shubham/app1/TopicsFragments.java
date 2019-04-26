@@ -136,9 +136,19 @@ public class TopicsFragments extends Fragment {
                if (type.equals("learn")){
                    int[] images = {R.drawable.afghanistan, R.drawable.algeria, R.drawable.angola, R.drawable.argentina, R.drawable.australia,
                            R.drawable.bahamas, R.drawable.bangladesh, R.drawable.belgium, R.drawable.benin,
-                           R.drawable.brazil, R.drawable.burkinafaso};
+                           R.drawable.brazil, R.drawable.burkinafaso, R.drawable.cameroon, R.drawable.canada, R.drawable.chad,
+                           R.drawable.china, R.drawable.congo, R.drawable.cotedivoire, R.drawable.egypt, R.drawable.ethiopia,
+                           R.drawable.france, R.drawable.gabon, R.drawable.gambia, R.drawable.germany, R.drawable.ghana, R.drawable.greece,
+                           R.drawable.guinea, R.drawable.india, R.drawable.iran, R.drawable.iraq, R.drawable.israel,R.drawable.italy,
+                           R.drawable.jamaica, R.drawable.japan, R.drawable.kenya, R.drawable.lebanon,  R.drawable.liberia,
+                           R.drawable.mali,  R.drawable.morocco, R.drawable.niger,  R.drawable.nigeria,  R.drawable.pakistan,
+                           R.drawable.portugal,  R.drawable.russia,  R.drawable.senegal,  R.drawable.southafrica,  R.drawable.uk,
+                           R.drawable.uk,  R.drawable.zambia,  R.drawable.zimbabwe};
                    String[] names = new String[]{"Afghanistan", "Algeria", "Angola", "Argentina", "Australia", "Bahamas", "Bangladesh", "Belgium", "Benin",
-                           "Brazil", "Burkina Faso"};
+                           "Brazil", "Burkina Faso", "Cameroon", "Canada", "Chad",  "China", "Congo", "Côte \n d'Ivoire", "Egypt", "Ethiopia", "France", "Gabon",
+                   "Gambia", "Germany", "Ghana", "Greece", "Guinea", "India", "Iran", "Iraq", "Israel", "Italy", "Jamaica", "Japan", "Kenya",
+                   "Lebanon", "Liberia", "Mali", "Morocco", "Niger", "Nigeria", "Pakistan", "Portugal", "Russia", "Senegal", "South \n Africa",
+                   "United \n Kingdom", "United \n States", "Zambia", "Zimbabwe"};
                    intent = new Intent(getContext(), LearnActivity.class);
                    intent.putExtra("images", images);
                    intent.putExtra("names", names);

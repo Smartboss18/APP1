@@ -141,6 +141,7 @@ public class QuizActivity extends AppCompatActivity {
         }else{
             theEnd();
             try {
+                countDownTimer.cancel();
                 tick.stop();
             }catch (Exception e){ }
         }
@@ -168,7 +169,7 @@ public class QuizActivity extends AppCompatActivity {
             mplayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
             mplayer.start();
         }
-        countDownTimer = new CountDownTimer(300,100) {
+        CountDownTimer mcountDownTimer = new CountDownTimer(300,100) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
@@ -183,6 +184,7 @@ public class QuizActivity extends AppCompatActivity {
 
     public void theEnd(){
         try {
+            countDownTimer.cancel();
             end = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
             end.start();
             end.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
