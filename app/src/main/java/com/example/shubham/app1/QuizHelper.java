@@ -78,6 +78,19 @@ public class QuizHelper {
             intent.putExtra("type", "RoadSign");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+
+        }else if (type.equals("Symbol")){
+            int[] images = {R.drawable.aban, R.drawable.abedua, R.drawable.adinkrahene, R.drawable.adwo, R.drawable.akoben, R.drawable.akokonan, R.drawable.akoma,
+                    R.drawable.denkyem, R.drawable.duafe, R.drawable.gyenyame, R.drawable.nkonsonkonson, R.drawable.nkyinkyim, R.drawable.nsaa, R.drawable.nsoromma,
+                    R.drawable.nyamedua, R.drawable.tamfobebre};
+            String[] names = new String[]{"Aban", "Abedua", "Adinkrahene", "Adwo", "Akoben", "Akokonan", "Akoma",
+                    "Denkyem", "Duafe", "Gye \n Nyame", "Nkonsonkonson", "Nkyinkyim", "Nsaa", "Nsoromma", "Nyamedua", "Tamfobebre"};
+            intent = new Intent(context,QuizActivity.class);
+            intent.putExtra("images", images);
+            intent.putExtra("names", names);
+            intent.putExtra("type", "Symbol");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 }

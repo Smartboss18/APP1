@@ -10,9 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProgressActivity extends AppCompatActivity {
 
-    TextView animalPercent, fruitPercent, colorPercent, flagPercent, roadSignPercent;
+    TextView animalPercent, fruitPercent, colorPercent, flagPercent, roadSignPercent, symbolPercent;
     FirebaseFirestore db;
-    String animalPoint, fruitPoint, colorPoint, flagPoint,currentUser, roadSignPoint;
+    String animalPoint, fruitPoint, colorPoint, flagPoint,currentUser, roadSignPoint, symbolPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class ProgressActivity extends AppCompatActivity {
         colorPercent = findViewById(R.id.colorPercent);
         flagPercent = findViewById(R.id.flagPercent);
         roadSignPercent = findViewById(R.id.roadsignPercent);
+        symbolPercent = findViewById(R.id.symbolPercentt);
 
        currentUser = SharedPreferenceUtils.getDetail("CurrentUser", this);
 
@@ -34,12 +35,14 @@ public class ProgressActivity extends AppCompatActivity {
         fruitPoint = SharedPreferenceUtils.getDetail("Fruit", this);
         flagPoint = SharedPreferenceUtils.getDetail("Flag", this);
         roadSignPoint = SharedPreferenceUtils.getDetail("RoadSign", this);
+        symbolPoint = SharedPreferenceUtils.getDetail("Symbol", this);
 
         animalPercent.setText("ANIMALS: " + animalPoint);
         fruitPercent.setText("FRUITS: " + fruitPoint);
         colorPercent.setText("COLORS: " + colorPoint);
         flagPercent.setText("FLAGS: " + flagPoint);
         roadSignPercent.setText("ROAD SIGNS: " + roadSignPoint);
+        symbolPercent.setText("SYMBOLS: " + symbolPoint);
 
         String currentUser = SharedPreferenceUtils.getDetail("CurrentUser", getApplicationContext());
         SharedPreferenceUtils.updateProgressInCloud(getApplicationContext(), currentUser);

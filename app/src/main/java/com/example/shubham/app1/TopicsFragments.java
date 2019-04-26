@@ -191,6 +191,35 @@ public class TopicsFragments extends Fragment {
            }
        });
 
+       Button symbols = view.findViewById(R.id.symbols);
+       symbols.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent = null;
+               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+               SharedPreferences.Editor editor = sharedPreferences.edit();
+               editor.putString("Type", "Symbol");
+               editor.commit();
+
+               if (type.equals("learn")){
+                   int[] images = {R.drawable.aban, R.drawable.abedua, R.drawable.adinkrahene, R.drawable.adwo, R.drawable.akoben, R.drawable.akokonan, R.drawable.akoma,
+                           R.drawable.denkyem, R.drawable.duafe, R.drawable.gyenyame, R.drawable.nkonsonkonson, R.drawable.nkyinkyim, R.drawable.nsaa, R.drawable.nsoromma,
+                           R.drawable.nyamedua, R.drawable.tamfobebre};
+                   String[] names = new String[]{"Aban", "Abedua", "Adinkrahene", "Adwo", "Akoben", "Akokonan", "Akoma",
+                   "Denkyem", "Duafe", "Gye \n Nyame", "Nkonsonkonson", "Nkyinkyim", "Nsaa", "Nsoromma", "Nyamedua", "Tamfobebre"};
+                   intent = new Intent(getContext(), LearnActivity.class);
+                   intent.putExtra("images", images);
+                   intent.putExtra("names", names);
+                   intent.putExtra("type", "Symbol");
+                   startActivity(intent);
+               }
+               else if (type.equals("quiz")){
+                   QuizHelper.startQuiz(getContext(), intent);
+               }
+           }
+       });
+
         return view;
     }
 }
